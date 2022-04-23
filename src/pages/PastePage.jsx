@@ -2,11 +2,13 @@ import defaultData from '../data/defaultData';
 import React, { useEffect, useState } from 'react';
 import { routes } from '../router/routes';
 import { Button } from '../components/Button';
+import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'react-router-dom';
 
 export const PastePage = () => {
-  const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
 
+  const [searchParams] = useSearchParams();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -35,13 +37,13 @@ export const PastePage = () => {
       <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
         {data?.map((item, index) => (
           <React.Fragment key={item.name + index}>
-            <div className="flex justify-center items-center truncate max-w-full font-bold">name:</div>
+            <div className="flex justify-center items-center truncate max-w-full font-bold">{t('name')}:</div>
             <input
               onChange={(e) => handleChange('name', e.target.value, index)}
               value={item.name}
               className="col-span-3 sm:col-span-4 text-sm w-full mt-1 rounded-md text-slate-800 p-2"
             />
-            <div className="flex justify-center items-center truncate max-w-full font-bold">value:</div>
+            <div className="flex justify-center items-center truncate max-w-full font-bold">{t('value')}:</div>
             <input
               onChange={(e) => handleChange('value', e.target.value, index)}
               value={item.value}
@@ -49,7 +51,7 @@ export const PastePage = () => {
             />
 
             <div className="col-span-4 sm:col-span-5 flex justify-center mb-5">
-              <Button onClick={() => handleDelete(index)}>delete</Button>
+              <Button onClick={() => handleDelete(index)}>{t('delete')}</Button>
             </div>
           </React.Fragment>
         ))}
@@ -59,9 +61,9 @@ export const PastePage = () => {
         <Button onClick={() => setData((values) => [...values, { name: '', value: '' }])}>+</Button>
         <Link
           to={routes.Copy + setUrlParams()}
-          className="mt-1 px-6 py-1 bg-amber-400 font-bold rounded-md w-fit h-fit"
+          className="mt-1 px-6 py-1 bg-amber-500 font-bold rounded-md w-fit h-fit"
         >
-          SAVE
+          {t('SAVE')}
         </Link>
       </div>
     </div>

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { routes } from '../router/routes';
 import { Button } from '../components/Button';
+import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'react-router-dom';
 
 export const CopyPage = () => {
+  const { t } = useTranslation();
+
   const [searchParams] = useSearchParams();
   const [data, setData] = useState(null);
 
@@ -19,35 +22,37 @@ export const CopyPage = () => {
   }, [searchParams]);
 
   return (
-    <div className="text-white min-h-screen bg-slate-800 p-4">
-      <div className="grid grid-cols-4 sm:grid-cols-5 gap-5 text-right">
+    <div className="text-white min-h-screen bg-slate-800 p-4 overflow-hidden">
+      <div className="grid grid-cols-3 sm:grid-cols-5 gap-5">
         {data?.length ? (
           data?.map((item) => (
             <React.Fragment key={item.name}>
-              <div className="col-span-3 sm:col-span-4">
-                <p className="font-bold text-2xl">{item.name || 'Not found'}</p>
-                <div className="truncate max-w-full">{item.value || 'Not found'}</div>
+              <div className="col-span-2 sm:col-span-4 text-right">
+                <p className="font-bold text-xl">{item.name || t('Not found')}</p>
+                <div className="truncate max-w-full">{item.value || t('Not found')}</div>
               </div>
               {item.value ? (
-                <Button onClick={() => navigator.clipboard.writeText(item.value)}>COPY</Button>
+                <Button onClick={() => navigator.clipboard.writeText(item.value)}>{t('COPY')}</Button>
               ) : (
-                <span>Not found</span>
+                <span>{t('Not found')}</span>
               )}
             </React.Fragment>
           ))
         ) : (
-          <div className="col-span-4 sm:col-span-5 flex flex-col items-center">
-            <div className="max-w-full">Not found any data</div>
+          <div className="col-span-3 sm:col-span-5 flex flex-col items-center">
+            <div className="max-w-full">{t('Not found any data')}</div>
           </div>
         )}
       </div>
       <div className="w-full flex justify-evenly mt-8">
-        <Button onClick={() => navigator.clipboard.writeText(window.location.href)}>copy site link</Button>
+        <div style={{ maxWidth: '40%' }}>
+          <Button onClick={() => navigator.clipboard.writeText(window.location.href)}>{t('copy site link')}</Button>
+        </div>
         <Link
-          className="mt-1 px-6 py-1 bg-amber-400 font-bold rounded-md w-fit h-fit"
+          className="mt-1 px-6 py-1 bg-amber-500 font-bold rounded-md w-fit h-fit"
           to={routes.Paste + location.search}
         >
-          Create
+          {t('Create')}
         </Link>
       </div>
     </div>
