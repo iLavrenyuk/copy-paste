@@ -18,6 +18,7 @@ const resources = {
       delete: 'delete',
       name: 'name',
       value: 'value',
+      'Set my params': 'Set my params',
     },
   },
   ua: {
@@ -33,6 +34,7 @@ const resources = {
       delete: 'видалити',
       name: 'нейм',
       value: 'значення',
+      'Set my params': 'Встановити мої параметри',
     },
   },
 };

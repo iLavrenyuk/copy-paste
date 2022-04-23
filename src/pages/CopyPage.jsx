@@ -29,7 +29,7 @@ export const CopyPage = () => {
             <React.Fragment key={item.name}>
               <div className="col-span-2 sm:col-span-4 text-right">
                 <p className="font-bold text-xl">{item.name || t('Not found')}</p>
-                <div className="truncate max-w-full">{item.value || t('Not found')}</div>
+                <div className="truncate text-sm max-w-full">{item.value || t('Not found')}</div>
               </div>
               {item.value ? (
                 <Button onClick={() => navigator.clipboard.writeText(item.value)}>{t('COPY')}</Button>
@@ -43,11 +43,12 @@ export const CopyPage = () => {
             <div className="max-w-full">{t('Not found any data')}</div>
           </div>
         )}
-      </div>
-      <div className="w-full flex justify-evenly mt-8">
+        <div className="mt-8 mb-8 col-span-3 sm:col-span-5 border-b-2" />
+        <div className="col-span-2 sm:col-span-4 text-right">{t('copy site link')}</div>
         <div style={{ maxWidth: '40%' }}>
-          <Button onClick={() => navigator.clipboard.writeText(window.location.href)}>{t('copy site link')}</Button>
+          <Button onClick={() => navigator.clipboard.writeText(window.location.href)}>{t('COPY')}</Button>
         </div>
+        <div className="col-span-2 sm:col-span-4 text-right">{t('Set my params')}</div>
         <Link
           className="mt-1 px-6 py-1 bg-amber-500 font-bold rounded-md w-fit h-fit"
           to={routes.Paste + location.search}
