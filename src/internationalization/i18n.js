@@ -51,6 +51,7 @@ const resources = {
       'Your link': 'Ваш лінк',
       'Does not exist': 'Не існує',
       Error: 'Помилка',
+      Generate: 'Згенерувати',
       'Generate yourself': 'Згенерувати самому',
     },
   },
