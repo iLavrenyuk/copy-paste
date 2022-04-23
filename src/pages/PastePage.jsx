@@ -36,7 +36,7 @@ export const PastePage = () => {
     <div className="text-white min-h-screen bg-slate-800 p-4">
       <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
         {data?.map((item, index) => (
-          <React.Fragment key={item.name + index}>
+          <React.Fragment key={index}>
             <div className="flex justify-center items-center truncate max-w-full font-bold">{t('name')}:</div>
             <input
               onChange={(e) => handleChange('name', e.target.value, index)}
