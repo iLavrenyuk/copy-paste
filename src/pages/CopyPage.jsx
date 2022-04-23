@@ -11,10 +11,16 @@ export const CopyPage = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    const names = searchParams.getAll('name');
-    const values = searchParams.getAll('value');
-    const searchParamsData = names.map((item, index) => ({ name: item, value: values[index] }));
-    setData(searchParamsData);
+    const entries = [];
+    for (const entry of searchParams.entries()) {
+      entries.push(entry);
+    }
+
+    if (entries?.length) {
+      setData(entries);
+    } else {
+      setData(null);
+    }
 
     return () => {
       setData(null);
@@ -28,11 +34,18 @@ export const CopyPage = () => {
           data?.map((item) => (
             <React.Fragment key={item.name}>
               <div className="col-span-2 sm:col-span-4 text-right">
-                <p className="font-bold text-xl">{item.name || t('Not found')}</p>
-                <div className="truncate text-sm max-w-full">{item.value || t('Not found')}</div>
+                {item.map((element, indexElement) =>
+                  indexElement ? (
+                    <div className="truncate text-sm max-w-full">{element || t('Not found')}</div>
+                  ) : (
+                    <p key={indexElement} className="font-bold text-xl">
+                      {element || t('Not found')}
+                    </p>
+                  )
+                )}
               </div>
-              {item.value ? (
-                <Button onClick={() => navigator.clipboard.writeText(item.value)}>{t('COPY')}</Button>
+              {item[1] ? (
+                <Button onClick={() => navigator.clipboard.writeText(item[1])}>{t('COPY')}</Button>
               ) : (
                 <span>{t('Not found')}</span>
               )}
