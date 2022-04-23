@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { routes } from '../router/routes';
 import { Button } from '../components/Button';
 import { useTranslation } from 'react-i18next';
+import { ShortLink } from '../components/ShortLink';
 import { Link, useSearchParams } from 'react-router-dom';
 
 export const CopyPage = () => {
@@ -56,11 +57,14 @@ export const CopyPage = () => {
             <div className="max-w-full">{t('Not found any data')}</div>
           </div>
         )}
+
         <div className="mt-8 mb-8 col-span-3 sm:col-span-5 border-b-2" />
+
         <div className="col-span-2 sm:col-span-4 text-right">{t('copy site link')}</div>
         <div style={{ maxWidth: '40%' }}>
           <Button onClick={() => navigator.clipboard.writeText(window.location.href)}>{t('COPY')}</Button>
         </div>
+
         <div className="col-span-2 sm:col-span-4 text-right">{t('Set my params')}</div>
         <Link
           className="mt-1 px-6 py-1 bg-amber-500 font-bold rounded-md w-fit h-fit"
@@ -68,6 +72,10 @@ export const CopyPage = () => {
         >
           {t('Create')}
         </Link>
+
+        <div className="mt-8 mb-8 col-span-3 sm:col-span-5 border-b-2" />
+
+        <ShortLink />
       </div>
     </div>
   );
