@@ -21,8 +21,7 @@ export const ShortLink = () => {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
           data: {
-            long_url:
-              'https://copy-paste.onrender.com/copy?Monobank%20link=https://www.monobank.ua/&Monobank%20card=4242%204242%204242%204242&Privat24%20link=https://next.privat24.ua/money-transfer/form/%7B%22form%22:%7B%22receiver%22:%7B%22source%22:%22manual%22,%22number%22:%225454545454545454%22%7D%7D%7D&Privat24%20card=5454%205454%205454%205454&',
+            long_url: window.location.href,
           },
         });
         localStorage.setItem('bitLy', res.data.link);
