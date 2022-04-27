@@ -87,7 +87,7 @@ export const CopyPage = () => {
 
         <div className="mt-8 mb-8 col-span-3 sm:col-span-5 border-b-2" />
 
-        <ShortLink />
+        <ShortLink clicked={clicked} setClicked={setClicked} />
       </div>
     </div>
   );

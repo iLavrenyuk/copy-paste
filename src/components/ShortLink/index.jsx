@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '../Button';
 import { useTranslation } from 'react-i18next';
 
-export const ShortLink = () => {
+export const ShortLink = ({ clicked, setClicked }) => {
   const { t } = useTranslation();
 
   const token = process.env.REACT_APP_BITLY_API_KEY;
@@ -70,7 +70,17 @@ export const ShortLink = () => {
           <div className="col-span-2 sm:col-span-4 text-right">
             {apiError ? t('Error') : link || t('Does not exist')}
           </div>
-          {link ? <Button onClick={() => navigator.clipboard.writeText(link)}>{t('COPY')}</Button> : null}
+          {link ? (
+            <Button
+              isClicked={clicked === 'bitly link'}
+              onClick={() => {
+                navigator.clipboard.writeText(link);
+                setClicked('bitly link');
+              }}
+            >
+              {clicked === 'bitly link' ? t('Copied') : t('COPY')}
+            </Button>
+          ) : null}
 
           <div className="col-span-2 sm:col-span-4 text-right">{t('Generate yourself')}:</div>
           <a
