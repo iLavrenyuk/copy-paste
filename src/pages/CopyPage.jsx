@@ -3,10 +3,11 @@ import { routes } from '../router/routes';
 import { Button } from '../components/Button';
 import { useTranslation } from 'react-i18next';
 import { ShortLink } from '../components/ShortLink';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const CopyPage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
   const [data, setData] = useState(null);
@@ -28,25 +29,35 @@ export const CopyPage = () => {
     };
   }, [searchParams]);
 
+  const [clicked, setClicked] = useState(null);
+
   return (
-    <div className="text-white min-h-screen bg-slate-800 p-4 overflow-hidden">
+    <div className="text-white bg-slate-800 p-4 overflow-hidden" style={{ minHeight: 'calc(100vh - 152px)' }}>
       <div className="grid grid-cols-3 sm:grid-cols-5 gap-5">
         {data?.length ? (
           data?.map((item) => (
-            <React.Fragment key={item.name}>
+            <React.Fragment key={item[0]}>
               <div className="col-span-2 sm:col-span-4 text-right">
                 {item.map((element, indexElement) =>
                   indexElement ? (
-                    <div className="truncate text-sm max-w-full">{element || t('Not found')}</div>
+                    <div className="truncate text-xs max-w-full">{element || t('Not found')}</div>
                   ) : (
-                    <p key={indexElement} className="font-bold text-xl">
+                    <p key={indexElement} className="font-bold text-lg">
                       {element || t('Not found')}
                     </p>
                   )
                 )}
               </div>
               {item[1] ? (
-                <Button onClick={() => navigator.clipboard.writeText(item[1])}>{t('COPY')}</Button>
+                <Button
+                  isClicked={clicked === item[0]}
+                  onClick={() => {
+                    navigator.clipboard.writeText(item[1]);
+                    setClicked(item[0]);
+                  }}
+                >
+                  {clicked === item[0] ? t('Copied') : t('COPY')}
+                </Button>
               ) : (
                 <span>{t('Not found')}</span>
               )}
@@ -60,18 +71,19 @@ export const CopyPage = () => {
 
         <div className="mt-8 mb-8 col-span-3 sm:col-span-5 border-b-2" />
 
-        <div className="col-span-2 sm:col-span-4 text-right">{t('copy site link')}</div>
-        <div style={{ maxWidth: '40%' }}>
-          <Button onClick={() => navigator.clipboard.writeText(window.location.href)}>{t('COPY')}</Button>
-        </div>
+        <div className="col-span-2 sm:col-span-4 text-right whitespace-pre-line">{t('copy site link')}</div>
+        <Button
+          isClicked={clicked === 'copy site link'}
+          onClick={() => {
+            navigator.clipboard.writeText(window.location.href);
+            setClicked('copy site link');
+          }}
+        >
+          {clicked === 'copy site link' ? t('Copied') : t('COPY')}
+        </Button>
 
         <div className="col-span-2 sm:col-span-4 text-right">{t('Set my params')}</div>
-        <Link
-          className="mt-1 px-6 py-1 bg-amber-500 font-bold rounded-md w-fit h-fit"
-          to={routes.Paste + location.search}
-        >
-          {t('Create')}
-        </Link>
+        <Button onClick={() => navigate(routes.Paste + location.search)}>{t('Create')}</Button>
 
         <div className="mt-8 mb-8 col-span-3 sm:col-span-5 border-b-2" />
 

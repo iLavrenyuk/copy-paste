@@ -35,32 +35,49 @@ export const ShortLink = () => {
 
   return (
     <>
-      <div className="col-span-2 sm:col-span-4 text-right">{t('Generate short link')}</div>
-      <div style={{ maxWidth: '40%' }}>
-        <Button onClick={() => setIsOpen(!isOpen)}>{t('Open')}</Button>
-      </div>
+      <div className="col-span-2 sm:col-span-4 text-right whitespace-pre-line">{t('Generate short link')}</div>
+      <Button className="" onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? t('Close') : t('Open')}
+        <svg
+          className={`m-2 shrink-0 ${isOpen ? '-rotate-90' : 'rotate-90'} transition-transform`}
+          xmlns="http://www.w3.org/2000/svg"
+          width="8"
+          height="11"
+          viewBox="0 0 8 11"
+        >
+          <g fill="none" fillRule="evenodd">
+            <g fill="#ffffff" fillRule="nonzero">
+              <g>
+                <g>
+                  <path
+                    d="M8.293 0.293L9.707 1.707 5 6.414 0.293 1.707 1.707 0.293 5 3.585z"
+                    transform="translate(-315 -193) translate(74 188) rotate(-90 128.5 -113)"
+                  />
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </Button>
+
       {isOpen ? (
         <>
-          <div className="col-span-2 sm:col-span-4 text-right">{t('1 link is free')}</div>
-          <div style={{ maxWidth: '40%' }}>
-            {link ? null : (
-              <Button onClick={async () => navigator.clipboard.writeText(await getMinLink())}>{t('Generate')}</Button>
-            )}
-          </div>
+          <div className="col-span-2 sm:col-span-4 text-right">{t('1 link as a gift')}</div>
+          {link ? null : (
+            <Button onClick={async () => navigator.clipboard.writeText(await getMinLink())}>{t('Generate')}</Button>
+          )}
 
-          <div className="col-span-2 sm:col-span-3 text-right">
+          <div className="col-span-2 sm:col-span-4 text-right">
             {apiError ? t('Error') : link || t('Does not exist')}
           </div>
-          <div style={{ maxWidth: '40%' }}>
-            {link ? <Button onClick={() => navigator.clipboard.writeText(link)}>{t('COPY')}</Button> : null}
-          </div>
+          {link ? <Button onClick={() => navigator.clipboard.writeText(link)}>{t('COPY')}</Button> : null}
 
-          <div className="col-span-2 sm:col-span-3 text-right">{t('Generate yourself')}:</div>
+          <div className="col-span-2 sm:col-span-4 text-right">{t('Generate yourself')}:</div>
           <a
             href="https://bitly.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="col-span-1 sm:col-span-2 underline text-blue-600"
+            className="col-span-1 sm:col-span-1 underline text-blue-600"
           >
             bitly.com
           </a>

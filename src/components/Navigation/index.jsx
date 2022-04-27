@@ -21,11 +21,17 @@ export const Navigation = () => {
           {t(name)}
         </Link>
       ))}
-      <div className="w-full flex flex-col text-sm text-right">
-        <span className={`${i18n.language === 'ua' ? 'text-amber-500' : ''}`} onClick={() => i18n.changeLanguage('ua')}>
+      <div className="w-full flex flex-col items-end text-sm text-right">
+        <span
+          className={`${i18n.language === 'ua' ? 'text-amber-500' : ''} w-fit cursor-pointer`}
+          onClick={() => i18n.changeLanguage('ua')}
+        >
           Українська
         </span>
-        <span className={`${i18n.language === 'en' ? 'text-amber-500' : ''}`} onClick={() => i18n.changeLanguage('en')}>
+        <span
+          className={`${i18n.language === 'en' ? 'text-amber-500' : ''} w-fit cursor-pointer`}
+          onClick={() => i18n.changeLanguage('en')}
+        >
           English
         </span>
       </div>

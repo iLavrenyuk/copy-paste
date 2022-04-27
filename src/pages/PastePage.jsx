@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { routes } from '../router/routes';
 import { Button } from '../components/Button';
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const PastePage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
   const [data, setData] = useState([]);
@@ -43,7 +44,7 @@ export const PastePage = () => {
   const setUrlParams = () => data.reduce((str, item) => `${str}${item[0]}=${item[1]}&`, '?');
 
   return (
-    <div className="text-white min-h-screen bg-slate-800 p-4">
+    <div className="text-white bg-slate-800 p-4" style={{ minHeight: 'calc(100vh - 152px)' }}>
       <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
         {data?.map((item, index) => (
           <React.Fragment key={index}>
@@ -68,12 +69,7 @@ export const PastePage = () => {
 
       <div className="w-full flex justify-evenly mt-8">
         <Button onClick={() => setData((values) => [...values, ['', '']])}>+</Button>
-        <Link
-          to={routes.Copy + setUrlParams()}
-          className="mt-1 px-6 py-1 bg-amber-500 font-bold rounded-md w-fit h-fit"
-        >
-          {t('SAVE')}
-        </Link>
+        <Button onClick={() => navigate(routes.Copy + setUrlParams())}>{t('SAVE')}</Button>
       </div>
     </div>
   );
