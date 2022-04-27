@@ -32,7 +32,7 @@ export const CopyPage = () => {
   const [clicked, setClicked] = useState(null);
 
   return (
-    <div className="text-white bg-slate-800 p-4 overflow-hidden" style={{ minHeight: 'calc(100vh - 152px)' }}>
+    <div className="text-white bg-slate-800 px-4 py-6 overflow-hidden" style={{ minHeight: 'calc(100vh - 208px)' }}>
       <div className="grid grid-cols-3 sm:grid-cols-5 gap-5">
         {data?.length ? (
           data?.map((item) => (

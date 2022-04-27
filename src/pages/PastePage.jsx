@@ -44,7 +44,7 @@ export const PastePage = () => {
   const setUrlParams = () => data.reduce((str, item) => `${str}${item[0]}=${item[1]}&`, '?');
 
   return (
-    <div className="text-white bg-slate-800 p-4" style={{ minHeight: 'calc(100vh - 152px)' }}>
+    <div className="text-white bg-slate-800 px-4 py-6" style={{ minHeight: 'calc(100vh - 208px)' }}>
       <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
         {data?.map((item, index) => (
           <React.Fragment key={index}>

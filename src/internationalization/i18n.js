@@ -30,6 +30,8 @@ const resources = {
       Error: 'Error',
       Generate: 'Generate',
       'Generate yourself': 'Generate yourself',
+      'Volunteer project': `This is Volunteer project \nIf you have ideas, contact me`,
+      'Contact me by': 'Contact me by',
     },
   },
   ua: {
@@ -57,6 +59,8 @@ const resources = {
       Error: 'Помилка',
       Generate: 'Згенерувати',
       'Generate yourself': 'Згенерувати самому',
+      'Volunteer project': `Це волонтерський проект \nЯкщо у вас є ідеї, зв'яжіться зі мною`,
+      'Contact me by': 'Звязатись зі мною',
     },
   },
 };

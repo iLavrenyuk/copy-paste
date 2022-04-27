@@ -1,10 +1,14 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   return (
-    <footer className="text-white bg-slate-900 flex justify-between p-4 text-sm">
+    <footer className="text-white bg-slate-900 flex justify-between px-4 py-6 text-sm flex-wrap">
+      <span className="basis-full text-center whitespace-pre-line mb-2">{t('Volunteer project')}</span>
       <div className="flex flex-col">
-        <span className="text-slate-500">Contact me by</span>
+        <span className="text-slate-500">{t('Contact me by')}</span>
 
         <div className="flex">
           <a className="underline mr-4" href="https://t.me/iLavreniuk" target="_blank" rel="noreferrer">
@@ -16,7 +20,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="flex flex-col">
-        <span className="text-slate-500">Develop by </span>ILLIA LAVRENIUK
+        <span className="text-slate-500">Develop by</span>ILLIA LAVRENIUK
       </div>
     </footer>
   );
