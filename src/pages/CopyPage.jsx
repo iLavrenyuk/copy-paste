@@ -52,7 +52,7 @@ export const CopyPage = () => {
               </div>
             ) : (
               <React.Fragment key={item[0]}>
-                <div className="col-span-2 sm:col-span-4 text-right">
+                <div className="col-span-2 sm:col-span-3 text-right">
                   {item.map((element, indexElement) =>
                     indexElement ? (
                       <div className="truncate text-xs max-w-full">{element || t('Not found')}</div>
