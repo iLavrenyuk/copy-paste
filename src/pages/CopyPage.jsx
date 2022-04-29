@@ -47,7 +47,7 @@ export const CopyPage = () => {
                   style={{ maxWidth: 640, width: '100%', height: heightIframe + 'px' }}
                   src={embedLink(item[1])}
                   frameBorder="0"
-                  onLoad={(e) => setHeightIframe(e.target.scrollWidth * 0.82 + 44)}
+                  onLoad={(e) => setHeightIframe(e.target.scrollWidth + 54)}
                 />
               </div>
             ) : (
