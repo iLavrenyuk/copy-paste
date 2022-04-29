@@ -1,4 +1,4 @@
 export const routes = {
   Copy: '/copy',
-  Paste: '/paste',
+  Create: '/create',
 };

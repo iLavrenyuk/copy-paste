@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { routes } from '../router/routes';
 import { Button } from '../components/Button';
 import { useTranslation } from 'react-i18next';
-import { ShortLink } from '../components/ShortLink';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 export const CopyPage = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
   const [data, setData] = useState(null);
+
+  const [clicked, setClicked] = useState(null);
 
   useEffect(() => {
     const entries = [];
@@ -28,8 +27,6 @@ export const CopyPage = () => {
       setData(null);
     };
   }, [searchParams]);
-
-  const [clicked, setClicked] = useState(null);
 
   return (
     <div className="text-white bg-slate-800 px-4 py-6 overflow-hidden" style={{ minHeight: 'calc(100vh - 208px)' }}>
@@ -68,26 +65,6 @@ export const CopyPage = () => {
             <div className="max-w-full">{t('Not found any data')}</div>
           </div>
         )}
-
-        <div className="mt-8 mb-8 col-span-3 sm:col-span-5 border-b-2" />
-
-        <div className="col-span-2 sm:col-span-4 text-right whitespace-pre-line">{t('copy site link')}</div>
-        <Button
-          isClicked={clicked === 'copy site link'}
-          onClick={() => {
-            navigator.clipboard.writeText(window.location.href);
-            setClicked('copy site link');
-          }}
-        >
-          {clicked === 'copy site link' ? t('Copied') : t('COPY')}
-        </Button>
-
-        <div className="col-span-2 sm:col-span-4 text-right">{t('Set my params')}</div>
-        <Button onClick={() => navigate(routes.Paste + location.search)}>{t('Create')}</Button>
-
-        <div className="mt-8 mb-8 col-span-3 sm:col-span-5 border-b-2" />
-
-        <ShortLink clicked={clicked} setClicked={setClicked} />
       </div>
     </div>
   );
