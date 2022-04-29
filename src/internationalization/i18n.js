@@ -33,6 +33,7 @@ const resources = {
       'Volunteer project': `This is Volunteer project \nIf you have ideas, contact me`,
       'Contact me by': 'Contact me by',
       Result: 'Result',
+      Visit: 'Visit',
     },
   },
   ua: {
@@ -63,6 +64,7 @@ const resources = {
       'Volunteer project': `Це волонтерський проект \nЯкщо у вас є ідеї, зв'яжіться зі мною`,
       'Contact me by': 'Звязатись зі мною',
       Result: 'Результат',
+      Visit: 'Перейти',
     },
   },
 };

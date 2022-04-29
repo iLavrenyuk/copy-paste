@@ -8,6 +8,7 @@ export const CopyPage = () => {
 
   const [searchParams] = useSearchParams();
   const [data, setData] = useState(null);
+  const [heightIframe, setHeightIframe] = useState(300);
 
   const [clicked, setClicked] = useState(null);
 
@@ -42,7 +43,12 @@ export const CopyPage = () => {
             item[1].includes('https://www.instagram.com') ? (
               <div className="col-span-3 sm:col-span-5 flex flex-col items-center" key={item[0]}>
                 <p className="font-bold text-lg mb-2">{item[0] || t('Not found')}</p>
-                <iframe width="100%" height="300" src={embedLink(item[1])} frameBorder="0" />
+                <iframe
+                  style={{ maxWidth: 640, width: '100%', height: heightIframe + 'px' }}
+                  src={embedLink(item[1])}
+                  frameBorder="0"
+                  onLoad={(e) => setHeightIframe(e.target.scrollWidth * 0.82 + 44)}
+                />
               </div>
             ) : (
               <React.Fragment key={item[0]}>
@@ -58,15 +64,19 @@ export const CopyPage = () => {
                   )}
                 </div>
                 {item[1] ? (
-                  <Button
-                    isClicked={clicked === item[0]}
-                    onClick={() => {
-                      navigator.clipboard.writeText(item[1]);
-                      setClicked(item[0]);
-                    }}
-                  >
-                    {clicked === item[0] ? t('Copied') : t('COPY')}
-                  </Button>
+                  item[1].includes('http') ? (
+                    <Button onClick={() => window.open(item[1], '_blank')}>{t('Visit')}</Button>
+                  ) : (
+                    <Button
+                      isClicked={clicked === item[0]}
+                      onClick={() => {
+                        navigator.clipboard.writeText(item[1]);
+                        setClicked(item[0]);
+                      }}
+                    >
+                      {clicked === item[0] ? t('Copied') : t('COPY')}
+                    </Button>
+                  )
                 ) : (
                   <span>{t('Not found')}</span>
                 )}

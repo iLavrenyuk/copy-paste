@@ -42,7 +42,8 @@ export const PastePage = () => {
     );
   };
 
-  const setUrlParams = () => data.reduce((str, item) => `${str}${item[0]}=${item[1]}&`, '?');
+  const setUrlParams = () =>
+    data.reduce((str, item, index) => `${str}${index === 0 ? '?' : '&'}${item[0]}=${item[1]}`, '');
 
   const resultLink = window.location.origin + routes.Copy + setUrlParams();
 
