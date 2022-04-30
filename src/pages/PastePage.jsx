@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { routes } from '../router/routes';
 import { Button } from '../components/Button';
 import { useTranslation } from 'react-i18next';
+import { AddTitle } from '../components/AddTitle';
 import { ShortLink } from '../components/ShortLink';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ export const PastePage = () => {
   const [paramsData, setParamsData] = useState([]);
 
   const [clicked, setClicked] = useState(null);
+  const [isOpenAddTitle, setIsOpenAddTitle] = useState(false);
 
   useEffect(() => {
     const entries = [];
@@ -48,7 +50,17 @@ export const PastePage = () => {
   const resultLink = window.location.origin + routes.Copy + setUrlParams();
 
   return (
-    <div className="text-white bg-slate-800 px-4 py-6" style={{ minHeight: 'calc(100vh - 208px)' }}>
+    <>
+      <div className="w-full flex justify-center my-8 items-center">
+        {isOpenAddTitle ? (
+          <AddTitle />
+        ) : (
+          <Button onClick={setIsOpenAddTitle}>{t('Add title and instagram post')}</Button>
+        )}
+      </div>
+
+      <div className="w-full mt-8 mb-8 col-span-3 sm:col-span-5 border-b-2" />
+
       <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
         {data?.map((item, index) => (
           <React.Fragment key={index}>
@@ -98,6 +110,6 @@ export const PastePage = () => {
 
         <ShortLink clicked={clicked} setClicked={setClicked} />
       </div>
-    </div>
+    </>
   );
 };
