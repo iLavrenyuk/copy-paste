@@ -108,7 +108,7 @@ export const PastePage = () => {
 
         <div className="mt-8 mb-8 col-span-3 sm:col-span-5 border-b-2" />
 
-        <ShortLink clicked={clicked} setClicked={setClicked} />
+        <ShortLink clicked={clicked} setClicked={setClicked} urlLink={routes.Copy + setUrlParams()} />
       </div>
     </>
   );

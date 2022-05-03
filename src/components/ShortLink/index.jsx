@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '../Button';
 import { useTranslation } from 'react-i18next';
 
-export const ShortLink = ({ clicked, setClicked }) => {
+export const ShortLink = ({ clicked, setClicked, urlLink }) => {
   const { t } = useTranslation();
 
   const token = process.env.REACT_APP_BITLY_API_KEY;
@@ -21,7 +21,7 @@ export const ShortLink = ({ clicked, setClicked }) => {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
           data: {
-            long_url: window.location.href,
+            long_url: urlLink,
           },
         });
         localStorage.setItem('bitLy', res.data.link);

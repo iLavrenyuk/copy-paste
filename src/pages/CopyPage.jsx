@@ -16,7 +16,7 @@ export const CopyPage = () => {
   const token =
     'IGQVJXeGlyMVVvS2xJNkVEa04xQ1cxNEhkX1NXS0lZAaUh0RGtvZAWF3bzNjVEdjNXdOMUxOZADdDQjBuV0N1TU1ScHJVUjEzbURUMWxUZAUs4dnl3YzlBeE04cnRzU1ozUnpIUFZAzQ0JJTllfQ0ZAXMVBwZAwZDZD';
   const code =
-    'AQDKmF0VXMV0yrAluv7WoJDiVrAo0wNsTFLnLFmWnUv2ahI1HMsBOvQ4xDHX7xFCBqn_0bkvLL3HHsOxjnWNtODD6szcP6ZZu7HOSz7llFJtbhuaalpAxmGPavE0bvz3i90GGMGb9IMVw23HzUReZXdbYWwND5swCrC2tksP2groXXfhNz8TM8zjDljemxH_RUTf376-l1bpxBwZ83zk9kAtIy1VNAQnYiber3Zr_PYw5w';
+    'AQCjQGsP6IvRAW_eKnVqX71XRMVLeiSzShOGk7p5nVKnovb8mKajKIK4b7caix0a4LK5K4X3C0Bt_Ay-b1JcIcF9QK48AsnDtX0jbqkkIixNooNeoTzOA8NEMZeq47m_58Bd-vAZDmH3YYlbCbISFYB2F_Yx7ZtS5HRd3XkYIhDnAL-KScFhDm_GAjY-47S9M-Lett-LrIG-76v1HJRAzjErRRru4Hyt1E7KuZVp0RuyVw';
 
   useEffect(() => {
     const entries = [];
@@ -46,13 +46,19 @@ export const CopyPage = () => {
 
     async function fetchInstagramPost() {
       try {
-        const accessToken = await axios.post('https://api.instagram.com/oauth/access_token', {
-          client_id: process.env.REACT_APP_META_APP_ID,
-          client_secret: process.env.REACT_APP_META_APP_SECRET,
-          grant_type: 'authorization_code',
-          redirect_uri: process.env.REACT_APP_META_REDIRECT_URL,
-          code,
-        });
+        const params = new URLSearchParams();
+        params.append('client_id', process.env.REACT_APP_META_APP_ID);
+        params.append('client_secret', process.env.REACT_APP_META_APP_SECRET);
+        params.append('grant_type', 'authorization_code');
+        params.append('redirect_uri', process.env.REACT_APP_META_REDIRECT_URL);
+        params.append('code', code);
+
+        const config = {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        };
+        const accessToken = await axios.post('https://api.instagram.com/oauth/access_token', params, config);
         console.log(accessToken);
 
         const data = await axios.get(

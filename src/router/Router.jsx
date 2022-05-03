@@ -12,7 +12,7 @@ export const Router = () => {
     <>
       <Navigation />
       <Routes>
-        <Route path="/" element={<PageWrapper />}>
+        <Route element={<PageWrapper />}>
           <Route path={routes.Copy} element={<CopyPage />} />
           <Route path={routes.Create} element={<PastePage />} />
         </Route>
