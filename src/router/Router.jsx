@@ -11,14 +11,13 @@ export const Router = () => {
     <>
       <Routes>
         <Route path="/" element={<MainWrapper />}>
+          <Route index element={<Navigate to={routes.Copy} replace />} />
           <Route path={routes.Copy}>
             <Route index element={<CopyPage />} />
             <Route path=":linkId" element={<CopyPageBase />} />
           </Route>
           <Route path={routes.Create} element={<PastePage />} />
         </Route>
-
-        <Route path="*" element={<Navigate to={routes.Copy} replace />} />
       </Routes>
     </>
   );
