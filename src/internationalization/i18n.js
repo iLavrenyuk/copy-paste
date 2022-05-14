@@ -34,6 +34,8 @@ const resources = {
       'Contact me by': 'Contact me by',
       Result: 'Result',
       Visit: 'Visit',
+      'Final result': 'Final result',
+      Back: 'Go back',
     },
   },
   ua: {
@@ -65,6 +67,8 @@ const resources = {
       'Contact me by': 'Звязатись зі мною',
       Result: 'Результат',
       Visit: 'Перейти',
+      'Final result': 'Фінальний результат',
+      Back: 'Повернутись назад',
     },
   },
 };

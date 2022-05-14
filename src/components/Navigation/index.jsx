@@ -10,17 +10,14 @@ export const Navigation = () => {
 
   return (
     <div className="text-white bg-slate-900 p-4 flex justify-between">
-      {Object.entries(routes).map(([name, route]) => (
-        <Link
-          to={route + location.search}
-          className={`${
-            route === location.pathname ? 'text-amber-500' : 'underline'
-          } text-center w-full font-bold text-lg`}
-          key={route}
-        >
-          {t(name)}
-        </Link>
-      ))}
+      <Link
+        to={routes.Create + location.search}
+        className={`${
+          location.pathname.match(routes.Create) ? 'text-amber-500' : 'underline'
+        } text-center w-full font-bold text-lg`}
+      >
+        {t('Create')}
+      </Link>
       <div className="w-full flex flex-col items-end text-sm text-right">
         <span
           className={`${i18n.language === 'ua' ? 'text-amber-500' : ''} w-fit cursor-pointer`}
