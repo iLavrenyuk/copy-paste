@@ -1,8 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link, useParams } from 'react-router-dom';
 
 export const Footer = () => {
   const { t } = useTranslation();
+  const { linkId } = useParams();
 
   return (
     <footer className="text-white bg-slate-900 flex justify-between px-4 py-6 text-sm flex-wrap">
@@ -20,7 +22,8 @@ export const Footer = () => {
         </div>
       </div>
       <div className="flex flex-col">
-        <span className="text-slate-500">Develop by</span>ILLIA LAVRENIUK
+        <span className="text-slate-500">Develop by</span>
+        <Link to={'/admin/' + linkId}>ILLIA LAVRENIUK</Link>
       </div>
     </footer>
   );

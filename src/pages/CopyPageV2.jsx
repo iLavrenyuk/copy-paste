@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { DisplayData } from '../components/DisplayData';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
-export const CopyPageBase = () => {
+export const CopyPageV2 = () => {
   const { linkId } = useParams();
 
   const [linkData, setLinkData] = useState([]);
