@@ -1,3 +1,4 @@
+import copy from 'copy-to-clipboard';
 import React, { useState } from 'react';
 import { Button } from '../Button';
 import { useTranslation } from 'react-i18next';
@@ -39,7 +40,7 @@ export const DisplayData = ({ data, isLoading }) => {
               <Button
                 isClicked={clicked === item.name}
                 onClick={() => {
-                  navigator.clipboard.writeText(item.value);
+                  copy(item.value);
                   setClicked(item.name);
                 }}
               >
