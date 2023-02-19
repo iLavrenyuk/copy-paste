@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import defaultData from '../data/defaultData';
 import { routes } from '../router/routes';
-import { appBase } from '../data/firebase';
 import { Button } from '../components/Button';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { createLinkData } from '../api/linkDataApi';
 import { CreateField } from '../components/CreateField';
-import { addDoc, getFirestore, collection } from 'firebase/firestore';
 
 export const PastePage = () => {
   const { t } = useTranslation();
@@ -24,10 +23,8 @@ export const PastePage = () => {
 
   const createLink = async () => {
     try {
-      const db = getFirestore(appBase);
-      const linksCol = collection(db, 'links');
-      const docRef = await addDoc(linksCol, { fields: data });
-      navigate(routes.Copy + '/' + docRef.id);
+      const res = await createLinkData(data);
+      navigate(routes.Copy + '/' + res.id);
     } catch (error) {
       alert(error);
     }

@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { appBase } from '../data/firebase';
 import { useParams } from 'react-router-dom';
+import { getLinkData } from '../api/linkDataApi';
 import { DisplayData } from '../components/DisplayData';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 export const CopyPageV2 = () => {
   const { linkId } = useParams();
@@ -13,11 +12,8 @@ export const CopyPageV2 = () => {
   const getData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const db = getFirestore(appBase);
-      const linksCol = collection(db, 'links');
-      const linksSnapshot = await getDocs(linksCol);
-      const searchLink = linksSnapshot.docs.find((doc) => doc.id == linkId)?.data()?.fields;
-      searchLink && setLinkData(searchLink);
+      const res = getLinkData(linkId);
+      setLinkData(res);
     } catch (error) {
       alert(error);
     }

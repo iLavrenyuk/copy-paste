@@ -6,7 +6,7 @@ import { AdminPage } from '../pages/AdminPage';
 import { PastePage } from '../pages/PastePage';
 import { CopyPageV2 } from '../pages/CopyPageV2';
 import { MainWrapper } from '../components/MainWrapper';
-import { Navigate, Route, Routes } from 'react-router-dum';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 export const Router = () => {
   return (
