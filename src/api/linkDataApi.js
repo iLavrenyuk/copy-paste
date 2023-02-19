@@ -6,6 +6,6 @@ export const getLinkData = async (linkId) => {
 };
 
 export const createLinkData = async (linkData) => {
-  const response = await apiService.post('/links', { dataArr: linkData });
+  const response = await apiService.post('/createLink', { dataArr: linkData });
   return response.data;
 };
