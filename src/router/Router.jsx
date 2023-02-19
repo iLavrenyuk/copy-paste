@@ -5,8 +5,8 @@ import { AdminRole } from './roles/AdminRole';
 import { AdminPage } from '../pages/AdminPage';
 import { PastePage } from '../pages/PastePage';
 import { CopyPageV2 } from '../pages/CopyPageV2';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { MainWrapper } from '../components/MainWrapper/inndex';
+import { MainWrapper } from '../components/MainWrapper';
+import { Navigate, Route, Routes } from 'react-router-dum';
 
 export const Router = () => {
   return (
